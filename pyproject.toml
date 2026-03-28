@@ -1,0 +1,62 @@
+[project]
+name = "rag-local"
+version = "0.1.0"
+description = "Local RAG application with GPT-5.3-Codex OAuth and LlamaIndex"
+requires-python = ">=3.12"
+dependencies = [
+    # RAG 프레임워크
+    "llama-index-core>=0.12",
+    "llama-index-llms-openai>=0.4",
+    "llama-index-embeddings-huggingface>=0.5",
+    "llama-index-readers-file>=0.4",
+    "llama-index-vector-stores-chroma>=0.4",
+    "llama-index-retrievers-bm25>=0.5",
+    # 벡터 DB
+    "chromadb>=1.0",
+    # OpenAI SDK
+    "openai>=1.60",
+    # 임베딩 (한국어 로컬)
+    "sentence-transformers>=3.0",
+    # 한국어 형태소 분석 (BM25)
+    "kiwipiepy>=0.18",
+    # 문서 파싱
+    "pymupdf>=1.25",
+    "python-docx>=1.1",
+    # OCR (스캔 PDF)
+    "easyocr>=1.7",
+    # API & CLI
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "typer>=0.15",
+    # 설정
+    "pydantic-settings>=2.7",
+    # Discord
+    "discord.py>=2.3",
+    # 유틸리티
+    "httpx>=0.28",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.9",
+]
+phase2 = [
+    "pyhwp>=0.2",
+]
+
+[project.scripts]
+rag-local = "rag_local.main:app"
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
